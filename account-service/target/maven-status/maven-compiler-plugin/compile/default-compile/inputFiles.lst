@@ -1,0 +1,8 @@
+/home/menumachines/projects/account-service/src/main/java/com/example/account/AccountServiceApplication.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/config/TraceFilter.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/controller/AccountController.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/model/Account.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/model/Transaction.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/repository/AccountRepository.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/repository/TransactionRepository.java
+/home/menumachines/projects/account-service/src/main/java/com/example/account/service/AccountService.java

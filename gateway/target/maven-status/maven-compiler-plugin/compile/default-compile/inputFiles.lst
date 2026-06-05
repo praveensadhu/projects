@@ -1,0 +1,10 @@
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/GatewayApplication.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/config/TraceFilter.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/config/WebClientConfig.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/controller/EventController.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/model/EventRecord.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/model/EventRequest.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/repository/EventRepository.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/service/AccountClient.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/service/EventService.java
+/home/menumachines/projects/gateway/src/main/java/com/example/gateway/service/MetricService.java
