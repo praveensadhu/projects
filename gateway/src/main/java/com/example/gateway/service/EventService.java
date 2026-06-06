@@ -1,3 +1,6 @@
+/**
+ * @author "Venkata Praveen Kumar Gupta"
+ */
 package com.example.gateway.service;
 
 import com.example.gateway.model.EventRecord;
@@ -50,20 +53,22 @@ public class EventService {
         repository.save(record);
         metricService.incrementEventSubmission();
 
+        long startTime = System.currentTimeMillis();
         try {
             accountClient.applyTransaction(request.getAccountId(), request.getType().toUpperCase(), request.getAmount(), request.getCurrency(), request.getEventId())
+                    .timeout(Duration.ofSeconds(2))
                     .retryWhen(Retry.backoff(2, Duration.ofMillis(200)).maxBackoff(Duration.ofSeconds(1)))
-                    .doOnError(error -> {
-                        log.warn("Account service unavailable for event {}", request.getEventId(), error);
-                        metricService.incrementAccountServiceFailure();
-                    })
                     .block();
+            
+            // metricService.recordLatency(System.currentTimeMillis() - startTime);
+            
             record.setStatus("SUBMITTED");
             repository.save(record);
             return record;
         } catch (Exception ex) {
-            record.setStatus("PENDING");
-            repository.save(record);
+            log.warn("Account service unavailable for event {}: {}", request.getEventId(), ex.getMessage());
+            metricService.incrementAccountServiceFailure();
+            // Keep as PENDING, but the save is already done above. 
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Account Service unavailable", ex);
         }
     }
@@ -77,5 +82,14 @@ public class EventService {
             return repository.findAll();
         }
         return repository.findByAccountIdOrderByEventTimestampAsc(accountId);
+    }
+
+    public Double getBalance(String accountId) {
+        try {
+            return accountClient.getBalance(accountId).block();
+        } catch (Exception ex) {
+            log.error("Account service unreachable for balance query: {}", accountId);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Account Service unavailable for balance queries", ex);
+        }
     }
 }

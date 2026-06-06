@@ -1,3 +1,6 @@
+/**
+ * @author "Venkata Praveen Kumar Gupta"
+ */
 package com.example.gateway.model;
 
 import jakarta.validation.constraints.DecimalMin;
