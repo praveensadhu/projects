@@ -1,4 +1,4 @@
-<!-- @author "Venkata Praveen Kumar Gupta" -->
+<!-- @author "Venkata Praveen Kumar Sadu" -->
 # Event Ledger System
 
 A robust, microservices-based financial transaction ledger designed to handle out-of-order event delivery and guarantee transaction idempotency.
